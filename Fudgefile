@@ -1,0 +1,77 @@
+ignore_files = %w{
+  lib/nfes/amendments/xml
+  lib/nfes/xml/exporter
+  lib/nfes/xml/importer
+  lib/admin_reports
+}
+
+ignore_files = ignore_files.join('|')
+
+ignore = "^\.\/(spec|db|config|#{ignore_files})\/"
+
+# task_group :jasmine_setup do
+#   rake 'sop_ui:jasmine_compile[force]', 'RAILS_ENV=test'
+# end
+
+# task_group :jasmine_run do
+#   rake 'spec:javascripts', 'RAILS_ENV=test'
+# end
+
+# task_group :jasmine do
+#   clean_bundler_env do
+#     task_group :i18n
+#     #task_group :jasmine_setup #TODO: Uncoment when we have templates
+#     task_group :jasmine_run
+#   end
+# end
+
+task_group :quality_assurance do
+  # yard 'stats --list-undoc', :coverage => 100
+  cane :max_width => 141, :exclude  => ignore
+  task :flay, :exclude => ignore
+  task :flog, :exclude => ignore, :methods => true
+  task :brakeman, :max => 2
+end
+
+task_group :setup_env do
+	clean_bundler_env do
+	 shell 'bundle install'
+	end
+
+	 # setup databases
+	clean_bundler_env do
+	  rake 'db:drop RAILS_ENV=test'
+	  rake 'db:setup RAILS_ENV=test'
+	end
+end
+
+task_group :rspec do
+  clean_bundler_env do
+    rspec :coverage => 100
+  end
+end
+
+build :default do
+  task_group :setup_env, :exclude => ignore
+  task_group :quality_assurance, :exclude => ignore
+  task_group :rspec, :exclude => ignore
+  # task_group :jasmine
+end
+
+build :specs do
+  task_group :setup_env
+
+  task_group :rspec
+end
+
+# build :js do
+#   task_group :jasmine
+# end
+
+build :quality_assurance do
+  task_group :quality_assurance
+end
+
+build :flog do
+  task :flog, :exclude => ignore, :methods => true
+end

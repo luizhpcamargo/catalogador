@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Characters Media</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @characters_media.each do |characters_media| %>
+      <tr>
+        <td><%= link_to 'Show', characters_media %></td>
+        <td><%= link_to 'Edit', edit_characters_media_path(characters_media) %></td>
+        <td><%= link_to 'Destroy', characters_media, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Characters media', new_characters_media_path %>
