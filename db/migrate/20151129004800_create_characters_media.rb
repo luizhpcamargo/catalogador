@@ -4,7 +4,7 @@ class CreateCharactersMedia < ActiveRecord::Migration
       t.integer :media_id
       t.integer :character_id
       t.integer :character_role_id
-
+      
       t.timestamps null: false
     end
   end

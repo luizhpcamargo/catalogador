@@ -3,7 +3,6 @@ class CreateMedia < ActiveRecord::Migration
     create_table :media do |t|
       t.string  :title
       t.string  :subtitle
-      t.decimal :price
       t.decimal :value
       t.string  :description
       t.string  :file
@@ -12,7 +11,6 @@ class CreateMedia < ActiveRecord::Migration
       t.string  :place
       t.string  :barcode
       t.string  :state
-      t.string  :loaned_to
 
       t.timestamps null: false
     end
