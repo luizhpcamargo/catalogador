@@ -15,5 +15,6 @@ RSpec.describe Media, :type => :model do
     expect(att).to include "barcode"
     expect(att).to include "state"
     expect(att).to include "loaned_to"
+  end
 end
 

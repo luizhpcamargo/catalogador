@@ -3,10 +3,11 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :set_instance, only: [:show, :edit, :update, :destroy]
+
   #index
   def index
-    instance_variable_set("@#{params[:controller]}", model.all)
-    send("@#{params[:controller]}")
+    instances
   end
   #/models/1
   def show
@@ -25,53 +26,33 @@ class ApplicationController < ActionController::Base
   # POST /users.json
   def create
     instance =  model.new(permitted_params)
-    respond_to do |format|
-      if variable.save
-        format.html { redirect_to variable, notice: 'Created successfully' }
-        format.json { render :show, status: :created, location: instance }
-      else
-        format.html { render :new }
-        format.json { render json: variable.errors, status: :unprocessable_entity }
-      end
+    if instance.save
+      redirect_to instance, notice: 'Created successfully'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if instance.update(permitted_params)
-        format.html { redirect_to @user, notice: "#{model_name} was successfully updated." }
-        format.json { render :show, status: :ok, location: instance }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if instance.update(permitted_params)
+        redirect_to instance, notice: model_name + " was successfully updated."
+    else
+        render :edit
     end
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to url_for(model, :index), notice: "#{model_name} was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    instance.destroy
+    redirect_to url_for(model, :index), notice: "#{model_name} was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    # def user_params
-    #   params[:user]
-    # end  #class name
+  #model
   def model
-    byebug
     model_name.singularize.constantize
   end
   #model_name
@@ -90,6 +71,14 @@ class ApplicationController < ActionController::Base
 
   def instance=(value)
     instance_variable_set("@#{model_name}", value)
+  end
+
+  def instances
+    instance_variable_set("@#{table}", model.all)
+  end
+
+  def set_instance
+    instance = model.find(params[:id])
   end
 
 end

@@ -43,6 +43,8 @@ group :development, :test do
   gem 'byebug'
   gem 'ruby2ruby'
   gem 'rspec-rails'
+  gem 'brakeman'
+  gem 'spring-commands-rspec'
 end
 
 group :development do

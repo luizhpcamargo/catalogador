@@ -1,6 +1,6 @@
 #character and media link
 class CharactersMediaController < ApplicationController
-  before_action :set_characters_media, only: [:show, :edit, :update, :destroy]
+  # before_action :set_characters_media, only: [:show, :edit, :update, :destroy]
 
   # GET /characters_media
   # GET /characters_media.json
@@ -62,11 +62,11 @@ class CharactersMediaController < ApplicationController
   #   end
   # end
 
-  private
-  #   # Use callbacks to share common setup or constraints between actions.
-    def set_characters_media
-      @characters_media = CharactersMedia.find(params[:id])
-    end
+  # private
+  # #   # Use callbacks to share common setup or constraints between actions.
+  #   def set_characters_media
+  #     @characters_media = CharactersMedia.find(params[:id])
+  #   end
 
   #   # Never trust parameters from the scary internet, only allow the white list through.
     def permitted_params
