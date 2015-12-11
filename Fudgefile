@@ -47,7 +47,8 @@ end
 
 task_group :rspec do
   clean_bundler_env do
-    rspec :coverage => 100
+    shell 'rspec --heckle MetadataReport'
+    #rspec :coverage => 100
   end
 end
 
