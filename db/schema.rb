@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20151129041224) do
   create_table "media", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
-    t.decimal  "price"
     t.decimal  "value"
     t.string   "description"
     t.string   "file"
@@ -44,7 +43,6 @@ ActiveRecord::Schema.define(version: 20151129041224) do
     t.string   "place"
     t.string   "barcode"
     t.string   "state"
-    t.string   "loaned_to"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -52,6 +50,9 @@ ActiveRecord::Schema.define(version: 20151129041224) do
   create_table "user_media", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "media_id"
+    t.string   "loaned_to"
+    t.decimal  "price"
+    t.decimal  "sell_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

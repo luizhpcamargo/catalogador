@@ -276,6 +276,7 @@ DEPENDENCIES
   fudge
   jbuilder (~> 2.0)
   jquery-rails
+  mutant
   mutant-rspec
   rails (= 4.2.4)
   rspec-rails

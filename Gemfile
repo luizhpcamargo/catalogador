@@ -36,17 +36,20 @@ gem 'devise', '~> 3.4.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'fudge'
   gem 'cane'
   gem 'flay'
   gem 'flog'
-  gem 'mutant-rspec'
   gem 'byebug'
   gem 'ruby2ruby'
-  gem 'rspec-rails'
   gem 'brakeman'
   gem 'spring-commands-rspec'
+end
+
+group :test do
+  gem 'mutant'
+  gem 'mutant-rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
