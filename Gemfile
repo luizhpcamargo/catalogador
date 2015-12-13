@@ -44,12 +44,14 @@ group :development, :test do
   gem 'ruby2ruby'
   gem 'brakeman'
   gem 'spring-commands-rspec'
+  gem 'rubocop'
 end
 
 group :test do
   gem 'mutant'
   gem 'mutant-rspec'
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 
 group :development do
