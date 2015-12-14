@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :media
   resources :characters
 
-  root to: "home#index"
+  root to: 'home#index'
 end

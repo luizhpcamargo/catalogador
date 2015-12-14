@@ -4,12 +4,12 @@ require 'rails_helper'
 # the CharactersMediaHelper. For example:
 #
 # describe CharactersMediaHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
+#   describe 'string concat' do
+#     it 'concats two strings with spaces' do
+#       expect(helper.concat_strings('this','that')).to eq('this that')
 #     end
 #   end
 # end
-RSpec.describe CharactersMediaHelper, :type => :helper do
+RSpec.describe CharactersMediaHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

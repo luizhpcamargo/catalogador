@@ -13,69 +13,69 @@
 
 ActiveRecord::Schema.define(version: 20151129041224) do
 
-  create_table "characters", force: :cascade do |t|
-    t.string   "name"
-    t.string   "codename"
-    t.string   "role"
-    t.string   "type"
-    t.date     "birth"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table 'characters', force: :cascade do |t|
+    t.string   'name'
+    t.string   'codename'
+    t.string   'role'
+    t.string   'type'
+    t.date     'birth'
+    t.string   'description'
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
   end
 
-  create_table "characters_media", force: :cascade do |t|
-    t.integer  "media_id"
-    t.integer  "character_id"
-    t.integer  "character_role_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+  create_table 'characters_media', force: :cascade do |t|
+    t.integer  'media_id'
+    t.integer  'character_id'
+    t.integer  'character_role_id'
+    t.datetime 'created_at',        null: false
+    t.datetime 'updated_at',        null: false
   end
 
-  create_table "media", force: :cascade do |t|
-    t.string   "title"
-    t.string   "subtitle"
-    t.decimal  "value"
-    t.string   "description"
-    t.string   "file"
-    t.string   "format"
-    t.string   "size"
-    t.string   "place"
-    t.string   "barcode"
-    t.string   "state"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table 'media', force: :cascade do |t|
+    t.string   'title'
+    t.string   'subtitle'
+    t.decimal  'value'
+    t.string   'description'
+    t.string   'file'
+    t.string   'format'
+    t.string   'size'
+    t.string   'place'
+    t.string   'barcode'
+    t.string   'state'
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
   end
 
-  create_table "user_media", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "media_id"
-    t.string   "loaned_to"
-    t.decimal  "price"
-    t.decimal  "sell_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'user_media', force: :cascade do |t|
+    t.integer  'user_id'
+    t.integer  'media_id'
+    t.string   'loaned_to'
+    t.decimal  'price'
+    t.decimal  'sell_price'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "login"
-    t.string   "state"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+  create_table 'users', force: :cascade do |t|
+    t.string   'name'
+    t.string   'login'
+    t.string   'state'
+    t.datetime 'created_at',                          null: false
+    t.datetime 'updated_at',                          null: false
+    t.string   'email',                  default: '', null: false
+    t.string   'encrypted_password',     default: '', null: false
+    t.string   'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.integer  'sign_in_count',          default: 0,  null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.string   'current_sign_in_ip'
+    t.string   'last_sign_in_ip'
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
+  add_index 'users', ['email'], name: 'index_users_on_email', unique: true
+  add_index 'users', ['reset_password_token'],
+            name: 'index_users_on_reset_password_token', unique: true
 end

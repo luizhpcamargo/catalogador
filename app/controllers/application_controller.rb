@@ -1,16 +1,18 @@
-#helper
+# helper
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :set_instance, only: [:show, :edit, :update, :destroy]
 
-  #index
+  # index
   def index
-    instances
+    list
   end
-  #/models/1
+
+  # /models/1
   def show
+    instance
   end
 
   # GET /users/new
@@ -25,7 +27,7 @@ class ApplicationController < ActionController::Base
   # POST /users
   # POST /users.json
   def create
-    instance =  model.new(permitted_params)
+    instance = model.new(permitted_params)
     if instance.save
       redirect_to instance, notice: 'Created successfully'
     else
@@ -37,9 +39,9 @@ class ApplicationController < ActionController::Base
   # PATCH/PUT /users/1.json
   def update
     if instance.update(permitted_params)
-        redirect_to instance, notice: model_name + " was successfully updated."
+      redirect_to instance, notice: model_name + ' was successfully updated.'
     else
-        render :edit
+      render :edit
     end
   end
 
@@ -47,20 +49,23 @@ class ApplicationController < ActionController::Base
   # DELETE /users/1.json
   def destroy
     instance.destroy
-    redirect_to url_for(model, :index), notice: "#{model_name} was successfully destroyed."
+    redirect_to url_for(model, :index),
+                notice: "#{model_name} was successfully destroyed."
   end
 
   private
-  #model
+
+  # model
   def model
     model_name.singularize.constantize
   end
-  #model_name
+
+  # model_name
   def model_name
     params[:controller].singularize.camelize
   end
-  #relation
-  #table
+
+  # table
   def table
     params[:controller]
   end
@@ -73,12 +78,11 @@ class ApplicationController < ActionController::Base
     instance_variable_set("@#{model_name}", value)
   end
 
-  def instances
+  def list
     instance_variable_set("@#{table}", model.all)
   end
 
   def set_instance
-    instance = model.find(params[:id])
+    instance_variable_set("@#{model_name}", model.find(params[:id]))
   end
-
 end

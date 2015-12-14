@@ -8,8 +8,8 @@ RSpec.describe 'characters_media/new', type: :view do
   it 'renders new characters_media form' do
     render
 
-    assert_select 'form[action=?][method=?]', 
-   	characters_media_index_path, 
-   	'post'
+    assert_select 'form[action=?][method=?]',
+                  characters_media_index_path,
+                  'post'
   end
 end

@@ -41,7 +41,7 @@ class RuboCopTask < Fudge::Tasks::Task
   end
 
   def run(p)
-    system("rubocop")
+    system('rubocop')
   end
 
   def check_for
