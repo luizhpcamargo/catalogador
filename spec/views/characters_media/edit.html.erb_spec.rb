@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "characters_media/edit", :type => :view do
+RSpec.describe "characters_media/edit", type: :view do
   before(:each) do
     @characters_media = assign(:characters_media, CharactersMedia.create!())
   end

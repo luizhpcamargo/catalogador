@@ -10,5 +10,7 @@ RSpec.describe Character, :type => :model do
     expect(att).to include "type"
     expect(att).to include "description"
   end
+
+  
 end
 
