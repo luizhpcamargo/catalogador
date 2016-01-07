@@ -11,6 +11,8 @@ class CreateMedia < ActiveRecord::Migration
       t.string  :place
       t.string  :barcode
       t.string  :state
+      t.decimal :price
+      t.string  :loaned_to
 
       t.timestamps null: false
     end
