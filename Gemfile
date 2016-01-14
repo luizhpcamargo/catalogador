@@ -52,6 +52,7 @@ group :test do
   gem 'mutant-rspec'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'factory_girl_rails'
 end
 
 group :development do

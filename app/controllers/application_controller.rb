@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :set_instance, only: [:show, :edit, :update, :destroy]
+  before_action :set_instance, only: [:edit, :update, :destroy]
 
   # index
   def index
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   # /models/1
   def show
-    instance
+    instance_variable_set("@#{table.singularize}", model.find(params[:id]))
   end
 
   # GET /users/new
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   # POST /users
   # POST /users.json
   def create
-    instance = model.new(permitted_params)
+    self.instance = model.new(permitted_params)
     if instance.save
       redirect_to instance, notice: 'Created successfully'
     else
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   # PATCH/PUT /users/1.json
   def update
     if instance.update(permitted_params)
-      redirect_to instance, notice: model_name + ' was successfully updated.'
+      redirect_to instance, notice: "#{model_name} was successfully updated."
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   # DELETE /users/1.json
   def destroy
     instance.destroy
-    redirect_to url_for(model, :index),
+    redirect_to url_for(controller: params[:controller], action: :index),
                 notice: "#{model_name} was successfully destroyed."
   end
 
@@ -70,12 +70,16 @@ class ApplicationController < ActionController::Base
     params[:controller]
   end
 
+  def relation
+    table.singularize
+  end
+
   def instance
-    instance_variable_get("@#{model_name}")
+    instance_variable_get("@#{relation}")
   end
 
   def instance=(value)
-    instance_variable_set("@#{model_name}", value)
+    instance_variable_set("@#{relation}", value)
   end
 
   def list
@@ -83,6 +87,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_instance
-    instance_variable_set("@#{model_name}", model.find(params[:id]))
+    instance_variable_set("@#{table.singularize}", model.find(params[:id]))
   end
 end

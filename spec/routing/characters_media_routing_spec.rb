@@ -11,13 +11,13 @@ RSpec.describe CharactersMediaController, type: :routing do
     end
 
     it 'routes to #show' do
-      expect(get: '/characters_media/1').to route_to('characters_media#show', 
-        id: '1')
+      param = route_to 'characters_media#show', id: '1'
+      expect(get: '/characters_media/1').to param
     end
 
     it 'routes to #edit' do
-      expect(get: '/characters_media/1/edit').to route_to('characters_media#edit', 
-        id: '1')
+      param = route_to 'characters_media#edit', id: '1'
+      expect(get: '/characters_media/1/edit').to param
     end
 
     it 'routes to #create' do
@@ -25,13 +25,13 @@ RSpec.describe CharactersMediaController, type: :routing do
     end
 
     it 'routes to #update' do
-      expect(put: '/characters_media/1').to route_to('characters_media#update', 
-        id: '1')
+      param = route_to 'characters_media#update', id: '1'
+      expect(put: '/characters_media/1').to param
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/characters_media/1').to route_to('characters_media#destroy', 
-        id: '1')
+      param = route_to 'characters_media#destroy', id: '1'
+      expect(delete: '/characters_media/1').to param
     end
   end
 end

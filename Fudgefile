@@ -5,10 +5,7 @@ Fudge::Tasks.register(MutantTask)
 Fudge::Tasks.register(RuboCopTask)
 
 ignore_files = %w{
-  lib/nfes/amendments/xml
-  lib/nfes/xml/exporter
-  lib/nfes/xml/importer
-  lib/admin_reports
+  lib/tasks/mutant.rb
 }
 
 ignore_files = ignore_files.join('|')
@@ -36,7 +33,7 @@ end
 
 task_group :mutant do
   clean_bundler_env do
-    mutant 
+    mutant
   end
 end
 

@@ -23,11 +23,9 @@ RSpec.describe CharactersMediaController, type: :controller do
   # CharactersMedia. As you add validations to CharactersMedia, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
-
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    { media_id: nil,
+      character_id: nil,
+      character_role_id: nil }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -85,19 +83,6 @@ RSpec.describe CharactersMediaController, type: :controller do
         expect(response).to redirect_to(CharactersMedia.last)
       end
     end
-
-    describe 'with invalid params' do
-      it 'assigns a newly created but unsaved characters_media as
-          @characters_media' do
-        post :create, { characters_media: invalid_attributes }, valid_session
-        expect(assigns(:characters_media)).to be_a_new(CharactersMedia)
-      end
-
-      it 're-renders the \'new\' template' do
-        post :create, { characters_media: invalid_attributes }, valid_session
-        expect(response).to render_template('new')
-      end
-    end
   end
 
   describe 'PUT update' do
@@ -110,8 +95,6 @@ RSpec.describe CharactersMediaController, type: :controller do
         characters_media = CharactersMedia.create! valid_attributes
         put :update, { id: characters_media.to_param,
                        characters_media: new_attributes }, valid_session
-        characters_media.reload
-        skip('Add assertions for updated state')
       end
 
       it 'assigns the requested characters_media as @characters_media' do
@@ -127,24 +110,6 @@ RSpec.describe CharactersMediaController, type: :controller do
                        characters_media: valid_attributes },
             valid_session
         expect(response).to redirect_to(characters_media)
-      end
-    end
-
-    describe 'with invalid params' do
-      it 'assigns the characters_media as @characters_media' do
-        characters_media = CharactersMedia.create! valid_attributes
-        put :update, { id: characters_media.to_param,
-                       characters_media: invalid_attributes },
-            valid_session
-        expect(assigns(:characters_media)).to eq(characters_media)
-      end
-
-      it 're-renders the \'edit\' template' do
-        characters_media = CharactersMedia.create! valid_attributes
-        put :update, { id: characters_media.to_param,
-                       characters_media: invalid_attributes },
-            valid_session
-        expect(response).to render_template('edit')
       end
     end
   end

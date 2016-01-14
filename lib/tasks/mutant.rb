@@ -7,7 +7,7 @@ class MutantTask < Fudge::Tasks::Task
   def run(*)
     out = false
     classes.each do |c|
-      out = system("RAILS_ENV=test bundle exec mutant -r
+      out = system("RAILS_ENV=test bundle exec mutant -r \
         ./config/environment --use rspec #{c}")
       break unless out
     end
@@ -18,13 +18,16 @@ class MutantTask < Fudge::Tasks::Task
     return @classes unless @classes.nil?
     @classes = []
 
-    classes = Dir['app/models/*.rb', 'app/controllers/*.rb'].map do |path|
-      path.match(/(\w+).rb/)
-    end.compact
-    classes.each do |c|
-      @classes << camelize(c)
+    classes_list.each do |c|
+      @classes << camelize(c[1])
     end
     @classes
+  end
+
+  def classes_list
+    Dir['app/models/*.rb', 'app/controllers/*.rb'].map do |path|
+      path.match(/(\w+).rb/)
+    end.compact
   end
 
   def camelize(string)

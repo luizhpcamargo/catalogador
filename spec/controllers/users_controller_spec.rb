@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    { login: 'Person1',
+      email: 'person1@example.com',
+      password: 'testtest',
+      password_confirmation: 'testtest' }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    { password: 'oi', login: 'oi' }
   end
 
   let(:valid_session) { {} }
@@ -85,8 +88,6 @@ RSpec.describe UsersController, type: :controller do
         user = User.create! valid_attributes
         put :update, { id: user.to_param, user: new_attributes },
             valid_session
-        user.reload
-        skip('Add assertions for updated state')
       end
 
       it 'assigns the requested user as @user' do
