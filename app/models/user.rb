@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   validates :login, presence: true, uniqueness: true, length: { in: 3..20 }
   validates :email, presence: true, uniqueness: true
+
+  def to_s
+    name
+  end
 end
