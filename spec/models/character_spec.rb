@@ -10,4 +10,17 @@ RSpec.describe Character, type: :model do
     expect(att).to include 'type'
     expect(att).to include 'description'
   end
+
+  describe 'checking methods' do
+    before do
+      @char = FactoryGirl.create(:character)
+    end
+
+    it '#to_s' do
+      expect(@char.to_s).to eql @char.name
+    end
+
+    it 'validations' do
+    end
+  end
 end
