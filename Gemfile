@@ -50,7 +50,7 @@ end
 group :test do
   gem 'mutant'
   gem 'mutant-rspec'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 8.0.0'
   gem 'simplecov'
   gem 'factory_girl_rails'
 end
